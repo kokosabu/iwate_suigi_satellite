@@ -9,44 +9,22 @@
             <input type="button" value="開始" onclick="slidesw()">
         </form>
         <script>
+            var lengthDay = 8;
+
             //画像を格納する配列の作成
             var image = new Array();
+            var today = new Date();
 
-            var year = 2018;
-            var month = 12;
-            var day = 16;
+            today.setDate(today.getDate() - lengthDay);
+            var year = today.getFullYear();
+            var month = today.getMonth()+1;
+            var day = today.getDate();
             //配列の各要素を画像に特化して、そのパスを記入
-            for(var i = 0; i < 8; i++) {
+            for(var i = 0; i < lengthDay; i++) {
                 image[i]=new Image();
                 image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                     + year + month + (day+i) + "0000.jpg";
                 image[i].txt=year+"年"+month+"月"+(day+i)+"日";
-                /*
-                image[0]=new Image();
-                image[0].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812160000.jpg";
-                image[0].txt="2018年12月16日";
-                image[1]=new Image();
-                image[1].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812170000.jpg";
-                image[1].txt="2018年12月17日";
-                image[2]=new Image();
-                image[2].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812180000.jpg";
-                image[2].txt="2018年12月18日";
-                image[3]=new Image();
-                image[3].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812190000.jpg";
-                image[3].txt="2018年12月19日";
-                image[4]=new Image();
-                image[4].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812200000.jpg";
-                image[4].txt="2018年12月20日";
-                image[5]=new Image();
-                image[5].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812210000.jpg";
-                image[5].txt="2018年12月21日";
-                image[6]=new Image();
-                image[6].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812220000.jpg";
-                image[6].txt="2018年12月22日";
-                image[7]=new Image();
-                image[7].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812230000.jpg";
-                image[7].txt="2018年12月23日";
-                */
             }
 
             var cnt=0;
