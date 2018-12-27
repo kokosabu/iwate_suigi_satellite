@@ -2,7 +2,7 @@
 <html lang="ja">
     <head><title>いわて大漁ナビ アニメーション</title></head>
     <body>
-        <img src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_201812220000.jpg" id="sd" alt="">
+        <img src="" id="sd">
         <div id="sd_txt"></div>
 
         <form name="slide">
@@ -25,6 +25,11 @@
                 image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                     + year + month + (day+i) + "0000.jpg";
                 image[i].txt=year+"年"+month+"月"+(day+i)+"日";
+            }
+
+            if(document.getElementById) {
+                document.getElementById("sd").src = image[lengthDay-1].src;
+                document.getElementById("sd_txt").textContent = image[lengthDay-1].txt;
             }
 
             var cnt=0;
