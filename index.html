@@ -14,11 +14,12 @@
             //画像を格納する配列の作成
             var image = new Array();
             var today = new Date();
+            var startday = new Date();
 
-            today.setDate(today.getDate() - lengthDay);
-            var year = today.getFullYear();
-            var month = today.getMonth()+1;
-            var day = today.getDate();
+            startday.setDate(today.getDate() - lengthDay);
+            var year  = startday.getFullYear();
+            var month = startday.getMonth()+1;
+            var day   = startday.getDate();
             //配列の各要素を画像に特化して、そのパスを記入
             for(var i = 0; i < lengthDay; i++) {
                 image[i]=new Image();
@@ -48,7 +49,7 @@
                     cnt++;
 
                     //画像が最後まで表示されたか確認
-                    if( cnt <= 7 ) {
+                    if( cnt < lengthDay ) {
                         //setTimeout()で次の画像を表示する
                         var timer1=setTimeout("slidesw()",300);
                     } else {
