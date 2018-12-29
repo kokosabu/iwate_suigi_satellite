@@ -7,9 +7,14 @@
 
         <form name="slide">
             <input type="button" value="開始" onclick="slidesw()">
+            <div>
+                <h3>切り替わり時間</h3>
+                <input id='ms' type='text' value='300' />ミリ秒
+            </div>
         </form>
         <script>
             var lengthDay = 8;
+            var switchTime = 300;
 
             //画像を格納する配列の作成
             var image = new Array();
@@ -45,13 +50,15 @@
                     document.getElementById("sd").src = image[cnt].src;
                     document.getElementById("sd_txt").textContent = image[cnt].txt;
 
+                    switchTime = document.getElementById('ms').value;
+
                     //一つ画像を表示したらカウント用変数cntの値を＋１にする
                     cnt++;
 
                     //画像が最後まで表示されたか確認
                     if( cnt < lengthDay ) {
                         //setTimeout()で次の画像を表示する
-                        var timer1=setTimeout("slidesw()",300);
+                        var timer1=setTimeout("slidesw()",switchTime);
                     } else {
                         //ボタンを押せるようにして、タイマーを停止する
                         cnt=0;
