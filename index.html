@@ -8,10 +8,13 @@
         <form name="slide">
             <input type="button" value="開始" onclick="slidesw()">
             <div>
-                <h3>切り替わり時間</h3>
-                <input id='ms' type='text' value='300' />ミリ秒
+                アニメーション開始 <input id='length' type='text' value='8' />日前から
+            </div>
+            <div>
+                切り替わり時間 <input id='ms' type='text' value='300' />ミリ秒
             </div>
         </form>
+        <a href="http://www.suigi.pref.iwate.jp/satellite/">岩手県水産技術センター水産情報配信システム調べ</a>
         <script>
             var lengthDay = 8;
             var switchTime = 300;
@@ -50,6 +53,7 @@
                     document.getElementById("sd").src = image[cnt].src;
                     document.getElementById("sd_txt").textContent = image[cnt].txt;
 
+                    lengthDay = document.getElementById('length').value;
                     switchTime = document.getElementById('ms').value;
 
                     //一つ画像を表示したらカウント用変数cntの値を＋１にする
