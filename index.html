@@ -24,6 +24,7 @@
             var today = new Date();
             var startday = new Date();
 
+            // Todo 16時頃更新を反映
             startday.setDate(today.getDate() - lengthDay);
             var year  = startday.getFullYear();
             var month = startday.getMonth()+1;
@@ -37,6 +38,7 @@
             }
 
             if(document.getElementById) {
+                // Todo imgタグを作るところから
                 document.getElementById("sd").src = image[lengthDay-1].src;
                 document.getElementById("sd_txt").textContent = image[lengthDay-1].txt;
             }
