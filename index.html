@@ -2,7 +2,6 @@
 <html lang="ja">
     <head><title>いわて大漁ナビ アニメーション</title></head>
     <body>
-        <img src="" id="sd" alt="">
         <div id="sd_txt"></div>
 
         <form name="slide">
@@ -38,8 +37,12 @@
             }
 
             if(document.getElementById) {
-                // Todo imgタグを作るところから
-                document.getElementById("sd").src = image[lengthDay-1].src;
+                var img = document.createElement('img');
+                img.src = image[lengthDay-1].src;
+                img.setAttribute('id', 'sd');
+                img.setAttribute('alt', '');
+                document.getElementsByTagName('body')[0].insertBefore(img,
+                        document.getElementsByTagName('body')[0].firstChild);
                 document.getElementById("sd_txt").textContent = image[lengthDay-1].txt;
             }
 
