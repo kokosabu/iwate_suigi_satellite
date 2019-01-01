@@ -23,11 +23,14 @@
             var today = new Date();
             var startday = new Date();
 
+            lengthDay = document.getElementById('length').value;
+
             // Todo 16時頃更新を反映
             startday.setDate(today.getDate() - lengthDay);
             var year  = startday.getFullYear();
             var month = startday.getMonth()+1;
             var day   = startday.getDate();
+
             //配列の各要素を画像に特化して、そのパスを記入
             for(var i = 0; i < lengthDay; i++) {
                 image[i]=new Image();
