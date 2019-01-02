@@ -23,30 +23,34 @@
             var today = new Date();
             var startday = new Date();
 
-            lengthDay = document.getElementById('length').value;
+            //lengthDay = document.getElementById('length').value;
 
             // Todo 16時頃更新を反映
             startday.setDate(today.getDate() - lengthDay);
-            var year  = startday.getFullYear();
-            var month = startday.getMonth()+1;
-            var day   = startday.getDate();
 
             //配列の各要素を画像に特化して、そのパスを記入
             for(var i = 0; i < lengthDay; i++) {
+                var day = new Date();
+                day.setDate(today.getDate() - i);
+
+                var year  = day.getFullYear();
+                var month = day.getMonth()+1;
+                var day   = day.getDate();
+
                 image[i]=new Image();
                 image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
-                    + year + month + (day+i) + "0000.jpg";
-                image[i].txt=year+"年"+month+"月"+(day+i)+"日";
+                    + year + month + day + "0000.jpg";
+                image[i].txt=year+"年"+month+"月"+day+"日";
             }
 
             if(document.getElementById) {
                 var img = document.createElement('img');
-                img.src = image[lengthDay-1].src;
+                img.src = image[0].src;
                 img.setAttribute('id', 'sd');
                 img.setAttribute('alt', '');
                 document.getElementsByTagName('body')[0].insertBefore(img,
                         document.getElementsByTagName('body')[0].firstChild);
-                document.getElementById("sd_txt").textContent = image[lengthDay-1].txt;
+                document.getElementById("sd_txt").textContent = image[0].txt;
             }
 
             var cnt=0;
@@ -57,12 +61,12 @@
                     //スライド中はボタンを押せなくする
                     document.slide.elements[0].disabled=true;
 
-                    //id属性が「sd」の画像タグの画像パスを切り替える
-                    document.getElementById("sd").src = image[cnt].src;
-                    document.getElementById("sd_txt").textContent = image[cnt].txt;
-
                     lengthDay = document.getElementById('length').value;
                     switchTime = document.getElementById('ms').value;
+
+                    //id属性が「sd」の画像タグの画像パスを切り替える
+                    document.getElementById("sd").src = image[lengthDay-cnt-1].src;
+                    document.getElementById("sd_txt").textContent = image[lengthDay-cnt-1].txt;
 
                     //一つ画像を表示したらカウント用変数cntの値を＋１にする
                     cnt++;
