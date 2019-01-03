@@ -21,11 +21,12 @@
             //画像を格納する配列の作成
             var image = new Array();
             var today = new Date();
+            var hour = today.getHours();
+            if(hour < 16) {
+                today.setDate(today.getDate() - 1);
+            }
+
             var startday = new Date();
-
-            //lengthDay = document.getElementById('length').value;
-
-            // Todo 16時頃更新を反映
             startday.setDate(today.getDate() - lengthDay);
 
             //配列の各要素を画像に特化して、そのパスを記入
