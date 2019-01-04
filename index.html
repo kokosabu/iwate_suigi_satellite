@@ -26,8 +26,25 @@
                 today.setDate(today.getDate() - 1);
             }
 
-            var startday = new Date();
-            startday.setDate(today.getDate() - lengthDay);
+            if(document.getElementById) {
+                var img = document.createElement('img');
+
+                var day = today;
+                var year  = day.getFullYear();
+                var month = day.getMonth()+1;
+                var day   = day.getDate();
+                image[0]=new Image();
+                image[0].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                    + year + month + day + "0000.jpg";
+                image[0].txt=year+"年"+month+"月"+day+"日";
+
+                img.src = image[0].src;
+                img.setAttribute('id', 'sd');
+                img.setAttribute('alt', '');
+                document.getElementsByTagName('body')[0].insertBefore(img,
+                        document.getElementsByTagName('body')[0].firstChild);
+                document.getElementById("sd_txt").textContent = image[0].txt;
+            }
 
             //配列の各要素を画像に特化して、そのパスを記入
             for(var i = 0; i < lengthDay; i++) {
@@ -44,16 +61,6 @@
                 image[i].txt=year+"年"+month+"月"+day+"日";
             }
 
-            if(document.getElementById) {
-                var img = document.createElement('img');
-                img.src = image[0].src;
-                img.setAttribute('id', 'sd');
-                img.setAttribute('alt', '');
-                document.getElementsByTagName('body')[0].insertBefore(img,
-                        document.getElementsByTagName('body')[0].firstChild);
-                document.getElementById("sd_txt").textContent = image[0].txt;
-            }
-
             var cnt=0;
 
             function slidesw()
@@ -62,7 +69,7 @@
                     //スライド中はボタンを押せなくする
                     document.slide.elements[0].disabled=true;
 
-                    lengthDay = document.getElementById('length').value;
+                    //lengthDay = document.getElementById('length').value;
                     switchTime = document.getElementById('ms').value;
 
                     //id属性が「sd」の画像タグの画像パスを切り替える
@@ -73,7 +80,7 @@
                     cnt++;
 
                     //画像が最後まで表示されたか確認
-                    if( cnt < lengthDay ) {
+                    if( cnt <= lengthDay ) {
                         //setTimeout()で次の画像を表示する
                         var timer1=setTimeout("slidesw()",switchTime);
                     } else {
