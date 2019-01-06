@@ -13,7 +13,9 @@
                 切り替わり時間 <input id='ms' type='text' value='300' />ミリ秒
             </div>
         </form>
+
         <a href="http://www.suigi.pref.iwate.jp/satellite/">岩手県水産技術センター水産情報配信システム調べ</a>
+
         <script>
             var lengthDay = 8;
             var switchTime = 300;
@@ -22,6 +24,7 @@
             var image = new Array();
             var today = new Date();
             var hour = today.getHours();
+            console.log(hour);
             if(hour < 16) {
                 today.setDate(today.getDate() - 1);
             }
@@ -31,8 +34,8 @@
 
                 var day = today;
                 var year  = day.getFullYear();
-                var month = day.getMonth()+1;
-                var day   = day.getDate();
+                var month = ('00' + (day.getMonth()+1)).slice(-2);
+                var day   = ('00' + day.getDate()).slice(-2);
                 image[0]=new Image();
                 image[0].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                     + year + month + day + "0000.jpg";
@@ -52,8 +55,8 @@
                 day.setDate(today.getDate() - i);
 
                 var year  = day.getFullYear();
-                var month = day.getMonth()+1;
-                var day   = day.getDate();
+                var month = ('00' + (day.getMonth()+1)).slice(-2);
+                var day   = ('00' + day.getDate()).slice(-2);
 
                 image[i]=new Image();
                 image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
@@ -80,7 +83,7 @@
                     cnt++;
 
                     //画像が最後まで表示されたか確認
-                    if( cnt <= lengthDay ) {
+                    if( cnt < lengthDay ) {
                         //setTimeout()で次の画像を表示する
                         var timer1=setTimeout("slidesw()",switchTime);
                     } else {
