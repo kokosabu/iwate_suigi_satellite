@@ -49,25 +49,32 @@
                 document.getElementById("sd_txt").textContent = image[0].txt;
             }
 
-            //配列の各要素を画像に特化して、そのパスを記入
-            for(var i = 0; i < lengthDay; i++) {
-                var day = new Date();
-                day.setDate(today.getDate() - i);
-
-                var year  = day.getFullYear();
-                var month = ('00' + (day.getMonth()+1)).slice(-2);
-                var day   = ('00' + day.getDate()).slice(-2);
-
-                image[i]=new Image();
-                image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
-                    + year + month + day + "0000.jpg";
-                image[i].txt=year+"年"+month+"月"+day+"日";
-            }
-
             var cnt=0;
+            var flg=1;
 
             function slidesw()
             {
+                if(flg) {
+                    //配列の各要素を画像に特化して、そのパスを記入
+                    for(var i = 0; i < lengthDay; i++) {
+                        var day = new Date();
+                        day.setDate(today.getDate() - i);
+
+                        var year  = day.getFullYear();
+                        var month = ('00' + (day.getMonth()+1)).slice(-2);
+                        var day   = ('00' + day.getDate()).slice(-2);
+
+                        image[i]=new Image();
+                        image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                            + year + month + day + "0000.jpg";
+                        image[i].txt=year+"年"+month+"月"+day+"日";
+                    }
+                    flg = 0;
+
+                    // TODO ダウンロードを待つ
+                    // TODO ダウンロード済みのイメージは再取得しない
+                    // TODO lengthDayを取得
+                }
                 if(document.getElementById) {
                     //スライド中はボタンを押せなくする
                     document.slide.elements[0].disabled=true;
@@ -89,6 +96,7 @@
                     } else {
                         //ボタンを押せるようにして、タイマーを停止する
                         cnt=0;
+                        flg=1;
                         document.slide.elements[0].disabled=false;
                         clearTimeout(timer1);
                     }
