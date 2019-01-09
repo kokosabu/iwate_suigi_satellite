@@ -17,6 +17,9 @@
         <a href="http://www.suigi.pref.iwate.jp/satellite/">岩手県水産技術センター水産情報配信システム調べ</a>
 
         <script>
+            const ON = 1;
+            const OFF = 0;
+
             var lengthDay = 8;
             var switchTime = 300;
 
@@ -50,7 +53,7 @@
             }
 
             var cnt=0;
-            var flg=1;
+            var flg=ON;
 
 
             function slidesw()
@@ -70,7 +73,7 @@
                             + year + month + day + "0000.jpg";
                         image[i].txt=year+"年"+month+"月"+day+"日";
                     }
-                    flg = 0;
+                    flg = OFF;
 
                     // TODO ダウンロードを待つ
                     // TODO ダウンロード済みのイメージは再取得しない
@@ -97,7 +100,7 @@
                     } else {
                         //ボタンを押せるようにして、タイマーを停止する
                         cnt=0;
-                        flg=1;
+                        flg=ON;
                         document.slide.elements[0].disabled=false;
                         clearTimeout(timer1);
                     }
