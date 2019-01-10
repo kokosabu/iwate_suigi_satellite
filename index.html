@@ -76,10 +76,11 @@
                     flg = OFF;
 
                     // TODO ダウンロードを待つ
+                    var timer1=setTimeout("slidesw()",1000);
                     // TODO ダウンロード済みのイメージは再取得しない
                     // TODO lengthDayを取得
                 }
-                if(document.getElementById) {
+                else if(document.getElementById) {
                     //スライド中はボタンを押せなくする
                     document.slide.elements[0].disabled=true;
 
