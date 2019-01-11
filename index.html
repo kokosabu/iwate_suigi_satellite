@@ -39,17 +39,17 @@
                 var year  = day.getFullYear();
                 var month = ('00' + (day.getMonth()+1)).slice(-2);
                 var day   = ('00' + day.getDate()).slice(-2);
-                image[0]=new Image();
-                image[0].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                image[''+year+month+day]=new Image();
+                image[''+year+month+day].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                     + year + month + day + "0000.jpg";
-                image[0].txt=year+"年"+month+"月"+day+"日";
+                image[''+year+month+day].txt=year+"年"+month+"月"+day+"日";
 
-                img.src = image[0].src;
+                img.src = image[''+year+month+day].src;
                 img.setAttribute('id', 'sd');
                 img.setAttribute('alt', '');
                 document.getElementsByTagName('body')[0].insertBefore(img,
                         document.getElementsByTagName('body')[0].firstChild);
-                document.getElementById("sd_txt").textContent = image[0].txt;
+                document.getElementById("sd_txt").textContent = image[''+year+month+day].txt;
             }
 
             var cnt=0;
@@ -68,10 +68,11 @@
                         var month = ('00' + (day.getMonth()+1)).slice(-2);
                         var day   = ('00' + day.getDate()).slice(-2);
 
-                        image[i]=new Image();
-                        image[i].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                        image[''+year+month+day]=new Image();
+                        image[''+year+month+day].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                             + year + month + day + "0000.jpg";
-                        image[i].txt=year+"年"+month+"月"+day+"日";
+                        image[''+year+month+day].txt=year+"年"+month+"月"+day+"日";
+                        console.log(''+year+month+day);
                     }
                     flg = OFF;
 
@@ -88,8 +89,15 @@
                     switchTime = document.getElementById('ms').value;
 
                     //id属性が「sd」の画像タグの画像パスを切り替える
-                    document.getElementById("sd").src = image[lengthDay-cnt-1].src;
-                    document.getElementById("sd_txt").textContent = image[lengthDay-cnt-1].txt;
+                    var day = new Date();
+                    day.setDate(today.getDate() - lengthDay + cnt + 1);
+
+                    var year  = day.getFullYear();
+                    var month = ('00' + (day.getMonth()+1)).slice(-2);
+                    var day   = ('00' + day.getDate()).slice(-2);
+                    console.log(''+year+month+day);
+                    document.getElementById("sd").src = image[''+year+month+day].src;
+                    document.getElementById("sd_txt").textContent = image[''+year+month+day].txt;
 
                     //一つ画像を表示したらカウント用変数cntの値を＋１にする
                     cnt++;
