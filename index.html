@@ -68,11 +68,13 @@
                         var month = ('00' + (day.getMonth()+1)).slice(-2);
                         var day   = ('00' + day.getDate()).slice(-2);
 
-                        image[''+year+month+day]=new Image();
-                        image[''+year+month+day].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
-                            + year + month + day + "0000.jpg";
-                        image[''+year+month+day].txt=year+"年"+month+"月"+day+"日";
-                        console.log(''+year+month+day);
+                        if(!(image[''+year+month+day])) {
+                            image[''+year+month+day]=new Image();
+                            image[''+year+month+day].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                                + year + month + day + "0000.jpg";
+                            image[''+year+month+day].txt=year+"年"+month+"月"+day+"日";
+                            console.log(''+year+month+day);
+                        }
                     }
                     flg = OFF;
 
@@ -95,7 +97,6 @@
                     var year  = day.getFullYear();
                     var month = ('00' + (day.getMonth()+1)).slice(-2);
                     var day   = ('00' + day.getDate()).slice(-2);
-                    console.log(''+year+month+day);
                     document.getElementById("sd").src = image[''+year+month+day].src;
                     document.getElementById("sd_txt").textContent = image[''+year+month+day].txt;
 
