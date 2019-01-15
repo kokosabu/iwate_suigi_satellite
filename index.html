@@ -39,17 +39,18 @@
                 var year  = day.getFullYear();
                 var month = ('00' + (day.getMonth()+1)).slice(-2);
                 var day   = ('00' + day.getDate()).slice(-2);
-                image[''+year+month+day]=new Image();
-                image[''+year+month+day].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                var index = ''+year+month+day;
+                image[index]=new Image();
+                image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                     + year + month + day + "0000.jpg";
-                image[''+year+month+day].txt=year+"年"+month+"月"+day+"日";
+                image[index].txt=year+"年"+month+"月"+day+"日";
 
-                img.src = image[''+year+month+day].src;
+                img.src = image[index].src;
                 img.setAttribute('id', 'sd');
                 img.setAttribute('alt', '');
                 document.getElementsByTagName('body')[0].insertBefore(img,
                         document.getElementsByTagName('body')[0].firstChild);
-                document.getElementById("sd_txt").textContent = image[''+year+month+day].txt;
+                document.getElementById("sd_txt").textContent = image[index].txt;
             }
 
             var cnt=0;
@@ -69,13 +70,14 @@
                         var year  = day.getFullYear();
                         var month = ('00' + (day.getMonth()+1)).slice(-2);
                         var day   = ('00' + day.getDate()).slice(-2);
+                        var index = ''+year+month+day;
 
-                        if(!(image[''+year+month+day])) {
-                            image[''+year+month+day]=new Image();
-                            image[''+year+month+day].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
+                        if(!(image[index])) {
+                            image[index]=new Image();
+                            image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                                 + year + month + day + "0000.jpg";
-                            image[''+year+month+day].txt=year+"年"+month+"月"+day+"日";
-                            console.log(''+year+month+day);
+                            image[index].txt=year+"年"+month+"月"+day+"日";
+                            console.log(index);
                         }
                     }
                     flg = OFF;
@@ -97,8 +99,9 @@
                     var year  = day.getFullYear();
                     var month = ('00' + (day.getMonth()+1)).slice(-2);
                     var day   = ('00' + day.getDate()).slice(-2);
-                    document.getElementById("sd").src = image[''+year+month+day].src;
-                    document.getElementById("sd_txt").textContent = image[''+year+month+day].txt;
+                    var index = ''+year+month+day;
+                    document.getElementById("sd").src = image[index].src;
+                    document.getElementById("sd_txt").textContent = image[index].txt;
 
                     //一つ画像を表示したらカウント用変数cntの値を＋１にする
                     cnt++;
