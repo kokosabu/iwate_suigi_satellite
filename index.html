@@ -27,8 +27,9 @@
             var image = new Array();
             var today = new Date();
             var hour = today.getHours();
-            console.log(hour);
             if(hour < 16) {
+                today.setDate(today.getDate() - 2);
+            } else {
                 today.setDate(today.getDate() - 1);
             }
 
@@ -51,11 +52,12 @@
                 document.getElementsByTagName('body')[0].insertBefore(img,
                         document.getElementsByTagName('body')[0].firstChild);
                 document.getElementById("sd_txt").textContent = image[index].txt;
+
+                console.log(img.src);
             }
 
             var cnt=0;
             var flg=ON;
-
 
             function slidesw()
             {
@@ -77,7 +79,6 @@
                             image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                                 + year + month + day + "0000.jpg";
                             image[index].txt=year+"年"+month+"月"+day+"日";
-                            console.log(index);
                         }
                     }
                     flg = OFF;
