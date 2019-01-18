@@ -17,6 +17,14 @@
         <a href="http://www.suigi.pref.iwate.jp/satellite/">岩手県水産技術センター水産情報配信システム調べ</a>
 
         <script>
+
+            function get_index(d) {
+                var year  = d.getFullYear();
+                var month = ('00' + (d.getMonth()+1)).slice(-2);
+                var day   = ('00' + d.getDate()).slice(-2);
+                var index = ''+year+month+day;
+            }
+
             const ON = 1;
             const OFF = 0;
 
@@ -36,11 +44,11 @@
             if(document.getElementById) {
                 var img = document.createElement('img');
 
-                var day = today;
-                var year  = day.getFullYear();
-                var month = ('00' + (day.getMonth()+1)).slice(-2);
-                var day   = ('00' + day.getDate()).slice(-2);
-                var index = ''+year+month+day;
+                var d = today;
+                var year  = d.getFullYear();
+                var month = ('00' + (d.getMonth()+1)).slice(-2);
+                var day   = ('00' + d.getDate()).slice(-2);
+                var index = get_index(d);
                 image[index]=new Image();
                 image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
                     + year + month + day + "0000.jpg";
