@@ -81,14 +81,14 @@
 
                         var year  = day.getFullYear();
                         var month = ('00' + (day.getMonth()+1)).slice(-2);
-                        var day   = ('00' + day.getDate()).slice(-2);
-                        var index = ''+year+month+day;
+                        var d   = ('00' + day.getDate()).slice(-2);
+                        var index = get_index(day);
 
                         if(!(image[index])) {
                             image[index]=new Image();
                             image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
-                                + year + month + day + "0000.jpg";
-                            image[index].txt=year+"年"+month+"月"+day+"日";
+                                + year + month + d + "0000.jpg";
+                            image[index].txt=year+"年"+month+"月"+d+"日";
                         }
                     }
                     flg = OFF;
