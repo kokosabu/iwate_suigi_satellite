@@ -27,6 +27,14 @@
                 return index;
             }
 
+            function get_src(d) {
+                var year  = d.getFullYear();
+                var month = ('00' + (d.getMonth()+1)).slice(-2);
+                var day   = ('00' + d.getDate()).slice(-2);
+
+                return "http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_" + year + month + day + "0000.jpg";
+            }
+
             const ON = 1;
             const OFF = 0;
 
@@ -52,8 +60,7 @@
                 var day   = ('00' + d.getDate()).slice(-2);
                 var index = get_index(d);
                 image[index]=new Image();
-                image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
-                    + year + month + day + "0000.jpg";
+                image[index].src = get_src(d);
                 image[index].txt=year+"年"+month+"月"+day+"日";
 
                 img.src = image[index].src;
@@ -86,8 +93,7 @@
 
                         if(!(image[index])) {
                             image[index]=new Image();
-                            image[index].src="http://www.suigi.pref.iwate.jp/satellite/display/image/Sc_"
-                                + year + month + d + "0000.jpg";
+                            image[index].src=get_src(day);
                             image[index].txt=year+"年"+month+"月"+d+"日";
                         }
                     }
